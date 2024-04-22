@@ -4,16 +4,16 @@ metadata:
   name: api
   labels:
     app: api
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 25%
 spec:
   replicas: 4
   selector:
     matchLabels:
       app: api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 25%
   template:
     metadata:
       labels:

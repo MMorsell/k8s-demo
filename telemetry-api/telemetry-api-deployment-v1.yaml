@@ -27,6 +27,13 @@ spec:
           image: telemetry-api:v1
           ports:
             - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /healthz  
+              port: 8080      
+            initialDelaySeconds: 10   # Delay the probe for 30 seconds after the container starts
+            periodSeconds: 10         # Check the readiness every 10 seconds
+            failureThreshold: 3       # Mark the container as not ready after 3 consecutive failures
           resources:
             requests:
               cpu: "100m"  # Request 0.1 CPU cores

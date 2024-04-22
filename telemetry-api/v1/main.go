@@ -75,12 +75,22 @@ func recordMetrics(start time.Time, method string, status int) {
 	requestDuration.WithLabelValues(labels...).Observe(duration)
 }
 
+func healthzHandler(w http.ResponseWriter, r *http.Request) {
+    // Perform any necessary health checks here
+    // For simplicity, let's just return a 200 OK status
+    w.WriteHeader(http.StatusOK)
+    fmt.Fprint(w, "OK")
+}
+
+
 func main() {
 	// Define a route for handling POST requests to /version
 	http.HandleFunc("/version", getVersion)
 
 	// Define handler for prometheus metric scraping
 	http.Handle("/metrics", promhttp.Handler())
+
+	http.HandleFunc("/healthz", healthzHandler)
 
 	// Start the HTTP server on port 8080
 	http.ListenAndServe(":8080", nil)

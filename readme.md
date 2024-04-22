@@ -1,14 +1,11 @@
 # Dependancies:
 - Docker (local desktop)
-- Minikube
-- Helm
-
+- Visual studio code
+- GIT
 
 ## After devcontainer is completely started:
 - Launch `./helper.sh` in a seperate console and let it run
 - Run `./configure_grafana.sh`
-
-
 
 ## Useful `kubectl` commands
 Get Pods: Lists all pods in the current namespace. Use `-w` to follow changes
